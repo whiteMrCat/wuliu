@@ -1,0 +1,23 @@
+.prove .prove-item {
+  padding: 30rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  border-bottom: 1px solid #efefef;
+}
+.prove .prove-item image {
+  width: 60rpx;
+}
+.prove .prove-item .prove-title {
+  width: 60vw;
+  margin-left: 20rpx;
+}
+.prove .prove-item .prove-info {
+  width: 20vw;
+  text-align: center;
+  color: #999;
+}
+

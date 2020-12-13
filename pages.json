@@ -1,0 +1,111 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/center/index",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+		}
+	    ,{
+            "path" : "pages/logistics/logistics",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "物流信息",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/trading/trading",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "车辆交易",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/position/position",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "招聘求职",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/mine",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的发布",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+		    "path" : "pages/mine/prove",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "认证",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+        ,{
+            "path" : "pages/release/release",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "车源发布",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "uView",
+		"navigationBarBackgroundColor": "#2979ff",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+	    "color": "#8a8a8a",
+	    "selectedColor": "#2979ff",
+	    "borderStyle": "black",
+	    "backgroundColor": "#ffffff",
+	    "list": [{
+	        "pagePath": "pages/index/index",
+	        "iconPath": "static/tab-bar/bar1.png",
+	        "selectedIconPath": "static/tab-bar/bar1_s.png",
+	        "text": "首页"
+	    }, {
+	        "pagePath": "pages/logistics/logistics",
+	        "iconPath": "static/tab-bar/bar2.png",
+	        "selectedIconPath": "static/tab-bar/bar2_s.png",
+	        "text": "物流信息"
+	    },{
+	        "pagePath": "pages/trading/trading",
+	        "iconPath": "static/tab-bar/bar3.png",
+	        "selectedIconPath": "static/tab-bar/bar3_s.png",
+	        "text": "车辆交易"
+	    },{
+	        "pagePath": "pages/position/position",
+	        "iconPath": "static/tab-bar/bar4.png",
+	        "selectedIconPath": "static/tab-bar/bar4_s.png",
+	        "text": "招聘求职"
+	    },{
+	        "pagePath": "pages/center/index",
+	        "iconPath": "static/tab-bar/bar5.png",
+	        "selectedIconPath": "static/tab-bar/bar5_s.png",
+	        "text": "我的"
+	    }]
+	}
+}

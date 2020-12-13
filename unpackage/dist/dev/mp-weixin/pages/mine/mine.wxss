@@ -1,0 +1,76 @@
+.list {
+  margin-top: 10rpx;
+}
+.list .list-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+  background-color: #fff;
+  padding: 30rpx;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+}
+.list .list-item .list-left {
+  width: 80vw;
+}
+.list .list-item .list-left .list-title {
+  font-weight: bold;
+}
+.list .list-item .list-left .list-info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  margin: 20rpx 0;
+}
+.list .list-item .list-left .list-info .info-item {
+  padding: 10rpx 20rpx;
+  background-color: #efefef;
+  font-size: 8pt;
+  margin-right: 20rpx;
+  -webkit-border-radius: 5rpx;
+          border-radius: 5rpx;
+}
+.list .list-item .list-left .list-info .bg-blue-light {
+  background-color: #a0cfff;
+  color: #fff;
+}
+.list .list-item .list-left .list-info .bg-red-light {
+  background-color: #fab6b6;
+  color: #fff;
+}
+.list .list-item .list-left .list-info .bg-orange-light {
+  background-color: #fcbd71;
+  color: #fff;
+}
+.list .list-item .list-left .list-other {
+  color: #777;
+  font-size: 9pt;
+}
+.list .list-item .list-right {
+  width: 20vw;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.list .list-item .list-right .right-btn {
+  text-align: right;
+}
+.list .list-item .list-right .right-info {
+  text-align: right;
+  color: red;
+}
+.list .list-item .is-top {
+  width: 10vw;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
