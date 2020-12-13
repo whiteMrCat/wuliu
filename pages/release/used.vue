@@ -1,11 +1,11 @@
 <template>
 	<view class="release">
 		<u-form :model="form" ref="uForm" label-width="200" label-align="center">
-			<u-form-item label="始发地">
-				<u-input v-model="form.startAddress.address" disabled @click="setAddress(1)" placeholder="请选择始发地" />
+			<u-form-item label="信息标题" prop="intro">
+				<u-input v-model="form.title" placeholder="请输入信息标题" />
 			</u-form-item>
-			<u-form-item label="目的地">
-				<u-input v-model="form.endAddress.address" disabled @click="setAddress(2)" placeholder="请选择目的地" />
+			<u-form-item label="车辆所在地" prop="intro">
+				<u-input v-model="form.address.address" disabled @click="setAddress" placeholder="请选择车辆所在地" />
 			</u-form-item>
 			<u-form-item label="联系人" prop="user">
 				<u-input v-model="form.user" placeholder="请输入联系人" />
@@ -13,30 +13,39 @@
 			<u-form-item label="联系电话" prop="mobile">
 				<u-input v-model="form.mobile" placeholder="请输入联系电话" />
 			</u-form-item>
-			<u-form-item label="车辆载重" prop="load">
-				<u-input v-model="form.load" placeholder="请输入车辆载重" />
-				<text style="width: 100rpx;color: #999;">吨</text>
+			<u-form-item label="罐体分类">
+				<u-input v-model="form.carType" disabled @click="showType = true" placeholder="请选择罐体分类" />
 			</u-form-item>
-			<u-form-item label="运费">
-				<u-input v-model="form.freight" placeholder="请输入车辆载重,不填写为面议" />
-				<text style="width: 100rpx;color: #999;">元</text>
+			<u-form-item label="介质分类">
+				<u-input v-model="form.media" disabled placeholder="请选择介质分类" />
 			</u-form-item>
-			<u-form-item label="车辆类型">
-				<u-input v-model="form.carType" disabled @click="showType = true" placeholder="请选择车辆类型" />
+			<u-form-item label="预估价格">
+				<u-input v-model="form.price" placeholder="请输入预估价格" />
+				<text style="width: 100rpx;color: #999;">万元</text>
 			</u-form-item>
-			<u-form-item label="路线类型">
-				<u-input v-model="form.wayType" disabled @click="showWayType = true" placeholder="请选择路线类型" />
+			<u-form-item label="上牌时间">
+				<u-input v-model="form.time" disabled @click="showTime = true" placeholder="请选择上牌时间" />
 			</u-form-item>
-			<u-form-item label="出发时间">
-				<u-input v-model="form.time" disabled @click="showTime = true" placeholder="请选择出发时间" />
+			<u-form-item label="车长">
+				<u-input v-model="form.carSize" placeholder="请输入车长" />
+				<text style="width: 100rpx;color: #999;">米</text>
 			</u-form-item>
-			<u-form-item label="备注" label-position="top" label-align="left" style="padding: 30rpx;">
+			<u-form-item label="缩略图" label-position="top" label-align="left" style="padding: 30rpx;">
+				<u-upload :action="action" :file-list="fileList"></u-upload>
+			</u-form-item>
+			<u-form-item label="车辆图片" label-position="top" label-align="left" style="padding: 30rpx;">
+				<u-upload :action="action" :file-list="fileList"></u-upload>
+			</u-form-item>
+			<u-form-item label="车辆介绍" label-position="top" label-align="left" style="padding: 30rpx;">
 				<u-input v-model="form.info" type="textarea" :border="false" :auto-height="false" />
+			</u-form-item>
+			<u-form-item label="车辆视频 *需开通VIP" label-position="top" label-align="left" style="padding: 30rpx;">
+				<u-upload :action="action" :file-list="fileList"></u-upload>
 			</u-form-item>
 			<u-form-item label="是否置顶">
 				<u-switch v-model="form.isTop" slot="right" style="margin-right: 30rpx;"></u-switch>
 			</u-form-item>
-			
+
 		</u-form>
 		<view style="padding: 30rpx;">
 			<u-button type="primary">{{form.isTop ? '发布并支付置顶费用：￥10' : '发布'}}</u-button>
@@ -78,30 +87,33 @@
 					}
 				],
 				showAddress: false,
-				addressIndex: 1,
 				form: {
-					startAddress: [],
-					endAddress: [],
+					title: '',
+					address: [],
 					user: '',
 					mobile: '',
-					load: '', // 车辆载重
-					freight: '', // 运费
 					carType: '',
-					wayType: '',
+					media: '',
 					time: '',
 					timeStamp: '',
+					carSize: '',
 					info: '',
+					price: '',
 					isTop: false
 				},
 				params: {
 					year: true,
 					month: true,
 					day: true,
-					hour: true,
-					minute: true,
+					hour: false,
+					minute: false,
 					second: false,
 					timestamp: true
 				},
+				action: 'http://www.example.com/upload',
+				fileList: [{
+					url: 'http://pics.sc.chinaz.com/files/pic/pic9/201912/hpic1886.jpg',
+				}],
 				rules: {
 					user: [{
 						required: true,
@@ -110,8 +122,8 @@
 						trigger: 'blur,change'
 					}],
 					intro: [{
-						min: 5,
-						message: '简介不能少于5个字',
+						min: 3,
+						message: '标题不能少于3个字',
 						trigger: 'change'
 					}],
 					mobile: [{
@@ -149,7 +161,7 @@
 		methods: {
 			getTime(e) {
 				// console.log(e)
-				this.form.time = e.year + '-' + e.month + '-' + e.day + ' ' + e.hour + ':' + e.minute
+				this.form.time = e.year + '-' + e.month + '-' + e.day
 				this.form.timeStamp = e.timestamp
 			},
 			setWayType(e) {
@@ -159,25 +171,15 @@
 				// console.log(e)
 				this.form.carType = this.selector[e].name
 			},
-			setAddress(index) {
-				this.addressIndex = index
+			setAddress() {
 				this.showAddress = true
 			},
 			getAddress(e) {
-				if (this.addressIndex == 1) {
-					this.form.startAddress = {
-						address: e.province.label + '-' + e.city.label + '-' + e.area.label,
-						province: e.province,
-						city: e.city,
-						area: e.area
-					}
-				} else {
-					this.form.endAddress = {
-						address: e.province.label + '-' + e.city.label + '-' + e.area.label,
-						province: e.province,
-						city: e.city,
-						area: e.area
-					}
+				this.form.address = {
+					address: e.province.label + '-' + e.city.label + '-' + e.area.label,
+					province: e.province,
+					city: e.city,
+					area: e.area
 				}
 			}
 		}

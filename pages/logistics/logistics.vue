@@ -49,7 +49,7 @@
 			<view class="warp">
 				<view class="rect" @tap.stop>
 					<view class="rect-btn" @click="goUrl('/pages/release/release')">车源发布</view>
-					<view class="rect-btn">货源发布</view>
+					<view class="rect-btn" @click="goUrl('/pages/release/release')">货源发布</view>
 				</view>
 			</view>
 		</u-mask>

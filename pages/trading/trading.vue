@@ -43,9 +43,9 @@
 		<u-mask :show="showBtn" @click="showBtn = false">
 			<view class="warp">
 				<view class="rect" @tap.stop>
-					<view class="rect-btn">二手车</view>
-					<view class="rect-btn">新车</view>
-					<view class="rect-btn">求购车辆</view>
+					<view class="rect-btn" @click="goUrl('/pages/release/used')">二手车</view>
+					<view class="rect-btn" @click="goUrl('/pages/release/used')">新车</view>
+					<view class="rect-btn" @click="goUrl('/pages/release/used')">求购车辆</view>
 				</view>
 			</view>
 		</u-mask>
@@ -121,6 +121,13 @@
 
 		},
 		methods: {
+			goUrl(url) {
+				uni.navigateTo({
+					url: url,
+					animationType: 'pop-in',
+					animationDuration: 200
+				})
+			},
 			setMineAddress(index) {
 				this.index = index
 				this.showAddress = true
