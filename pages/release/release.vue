@@ -14,12 +14,10 @@
 				<u-input v-model="form.mobile" placeholder="请输入联系电话" />
 			</u-form-item>
 			<u-form-item label="车辆载重" prop="load">
-				<u-input v-model="form.load" placeholder="请输入车辆载重" />
-				<text style="width: 100rpx;color: #999;">吨</text>
+				<u-input v-model="form.load" placeholder="请输入车辆载重/吨" />
 			</u-form-item>
 			<u-form-item label="运费">
-				<u-input v-model="form.freight" placeholder="请输入车辆载重,不填写为面议" />
-				<text style="width: 100rpx;color: #999;">元</text>
+				<u-input v-model="form.freight" placeholder="请输入车辆运费/元,不填写为面议"/>
 			</u-form-item>
 			<u-form-item label="车辆类型">
 				<u-input v-model="form.carType" disabled @click="showType = true" placeholder="请选择车辆类型" />
@@ -30,8 +28,11 @@
 			<u-form-item label="出发时间">
 				<u-input v-model="form.time" disabled @click="showTime = true" placeholder="请选择出发时间" />
 			</u-form-item>
-			<u-form-item label="备注" label-position="top" label-align="left" style="padding: 30rpx;">
-				<u-input v-model="form.info" type="textarea" :border="false" :auto-height="false" />
+			<u-form-item>
+				<view style="padding-left: 30rpx;">备注</view>
+				<view style="padding-left: 30rpx;">
+					<u-input v-model="form.info" type="textarea" :border="false" :auto-height="false" />
+				</view>
 			</u-form-item>
 			<u-form-item label="是否置顶">
 				<u-switch v-model="form.isTop" slot="right" style="margin-right: 30rpx;"></u-switch>

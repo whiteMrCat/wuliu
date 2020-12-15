@@ -20,15 +20,13 @@
 				<u-input v-model="form.media" disabled placeholder="请选择介质分类" />
 			</u-form-item>
 			<u-form-item label="预估价格">
-				<u-input v-model="form.price" placeholder="请输入预估价格" />
-				<text style="width: 100rpx;color: #999;">万元</text>
+				<u-input v-model="form.price" placeholder="请输入预估价格/万元" />
 			</u-form-item>
 			<u-form-item label="上牌时间">
 				<u-input v-model="form.time" disabled @click="showTime = true" placeholder="请选择上牌时间" />
 			</u-form-item>
 			<u-form-item label="车长">
-				<u-input v-model="form.carSize" placeholder="请输入车长" />
-				<text style="width: 100rpx;color: #999;">米</text>
+				<u-input v-model="form.carSize" placeholder="请输入车长/米" />
 			</u-form-item>
 			<u-form-item label="缩略图" label-position="top" label-align="left" style="padding: 30rpx;">
 				<u-upload :action="action" :file-list="fileList"></u-upload>

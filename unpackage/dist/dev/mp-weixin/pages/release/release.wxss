@@ -1,0 +1,4 @@
+.u-form-left__content__label {
+  padding-left: 20rpx;
+}
+

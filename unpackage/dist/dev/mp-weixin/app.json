@@ -7,7 +7,8 @@
     "pages/position/position",
     "pages/mine/mine",
     "pages/mine/prove",
-    "pages/release/release"
+    "pages/release/release",
+    "pages/release/used"
   ],
   "subPackages": [],
   "window": {
