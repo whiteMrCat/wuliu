@@ -78,10 +78,19 @@
 		    }
 		    
 		}
+        ,{
+            "path" : "pages/login/login",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "uView",
+		"navigationBarTitleText": "UU罐车",
 		"navigationBarBackgroundColor": "#2979ff",
 		"backgroundColor": "#F8F8F8"
 	},

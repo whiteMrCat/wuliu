@@ -8,12 +8,13 @@
     "pages/mine/mine",
     "pages/mine/prove",
     "pages/release/release",
-    "pages/release/used"
+    "pages/release/used",
+    "pages/login/login"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "uView",
+    "navigationBarTitleText": "UU罐车",
     "navigationBarBackgroundColor": "#2979ff",
     "backgroundColor": "#F8F8F8"
   },
@@ -55,5 +56,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap90.json"
 }

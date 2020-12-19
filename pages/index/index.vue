@@ -1,6 +1,6 @@
 <template>
 	<view class="index">
-		<u-swiper :list="list" height="400"></u-swiper>
+		<u-swiper :list="list" height="400" name="url"></u-swiper>
 		<view class="top-nav">
 			<view class="nav-item" v-for="(item, index) in nav" :key="index">
 				<image :src="item.icon" mode="widthFix"></image>
@@ -91,25 +91,20 @@
 					name: '求职信息'
 				}],
 				current: 0,
-				list: [{
-						image: 'https://cdn.uviewui.com/uview/swiper/1.jpg',
-						title: '昨夜星辰昨夜风，画楼西畔桂堂东'
-					},
-					{
-						image: 'https://cdn.uviewui.com/uview/swiper/2.jpg',
-						title: '身无彩凤双飞翼，心有灵犀一点通'
-					},
-					{
-						image: 'https://cdn.uviewui.com/uview/swiper/3.jpg',
-						title: '谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳'
-					}
-				],
+				list: [],
 			}
 		},
 		onLoad() {
-
+			this.getSet()
 		},
 		methods: {
+			getSet() {
+				let _this = this
+				this.$api.getSet().then(res => {
+					// console.log(res)
+					_this.list = res.data.banner
+				})
+			},
 			change(index) {
 				this.current = index;
 			}

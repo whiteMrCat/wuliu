@@ -2,14 +2,17 @@
 	<view class="content">
 		<view class="user">
 			<view class="user-adv">
-				<u-avatar :src="src" mode="square" size="160"></u-avatar>
+				<u-avatar :src="user.avatar" mode="square" size="160"></u-avatar>
 			</view>
-			<view class="user-info">
-				<view class="user-name">昵称：XXXXX</view>
-				<view class="user-vip">VIP</view>
-				<view class="user-is">暂无认证 <text>立即认证</text></view>
+			<view class="user-info" v-if="user">
+				<view class="user-name">昵称：{{user.user_name}}</view>
+				<view class="user-vip">{{user.type == 0 ? '暂未开通VIP' : 'VIP尊贵用户'}}</view>
+				<view class="user-is">立即认证实名信息</view>
 			</view>
-			<view class="user-btn">
+			<view class="user-info" v-else  @click="goUrl('/pages/login/login')">
+				<view class="user-name">请先登录</view>
+			</view>
+			<view class="user-btn"  @click="goUrl('/pages/mine/prove')">
 				<u-icon name="setting" size="60" color="#fff"></u-icon>
 			</view>
 		</view>
@@ -56,10 +59,28 @@
 		data() {
 			return {
 				src: 'http://pic2.sc.chinaz.com/Files/pic/pic9/202002/hpic2119_s.jpg',
+				user: []
 			}
 		},
-		onLoad() {
-
+		onShow() {
+			let user = uni.getStorageSync('user')
+			if (user) {
+				this.user = user
+			} else {
+				uni.showModal({
+					title: '提示',
+					content: '请先授权并登录，以获取完整功能操作',
+					success: function(res) {
+						if (res.confirm) {
+							uni.navigateTo({
+								url: '/pages/login/login'
+							})
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
+				});
+			}
 		},
 		methods: {
 			goUrl(url) {

@@ -8,23 +8,21 @@
   },
   "compileType": "miniprogram",
   "libVersion": "",
-  "appid": "wx097b7b50162cfb02",
+  "appid": "wx7a8004ea2b312e31",
   "projectname": "uView-demo",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
-      "current": -1,
       "list": []
     },
     "conversation": {
-      "current": -1,
       "list": []
     },
     "game": {
-      "current": -1,
       "list": []
     },
     "miniprogram": {
-      "current": -1,
       "list": []
     }
   }
