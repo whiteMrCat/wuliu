@@ -6,7 +6,8 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "首页",
+                "enablePullDownRefresh": true
 			}
 		},
 		{
@@ -20,15 +21,41 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "物流信息",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": true
             }
             
         }
+		,{
+		    "path" : "pages/logistics/details",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "车源详情",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/logistics/goods",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "货源详情",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
         ,{
             "path" : "pages/trading/trading",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "车辆交易",
+                "enablePullDownRefresh": true
+            }
+            
+        },{
+            "path" : "pages/trading/detail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "车辆详情",
                 "enablePullDownRefresh": false
             }
             
@@ -38,6 +65,22 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "招聘求职",
+                "enablePullDownRefresh": true
+            }
+            
+        },{
+            "path" : "pages/position/details",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "招聘详情",
+                "enablePullDownRefresh": false
+            }
+            
+        },{
+            "path" : "pages/position/resume",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "招聘详情",
                 "enablePullDownRefresh": false
             }
             
@@ -47,7 +90,7 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "我的发布",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": true
             }
             
         },
@@ -70,10 +113,37 @@
             
         },
 		{
+		    "path" : "pages/release/goods",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "货源发布",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		{
 		    "path" : "pages/release/used",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "二手车发布",
+		        "navigationBarTitleText": "车辆发布",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		{
+		    "path" : "pages/release/invite",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "招聘发布",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		{
+		    "path" : "pages/release/resume",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "求职发布",
 		        "enablePullDownRefresh": false
 		    }
 		    
@@ -83,6 +153,57 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/articles/articles",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "商会文章",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/getOrder/getOrder",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "下单",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/approve/approve",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "个人实名认证",
+                "enablePullDownRefresh": false
+            }
+            
+        },{
+            "path" : "pages/approve/company",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "企业实名认证",
+                "enablePullDownRefresh": false
+            }
+            
+        },{
+            "path" : "pages/approve/road",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "道路运输资格证书认证",
+                "enablePullDownRefresh": false
+            }
+            
+        },{
+            "path" : "pages/approve/driver",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "驾照认证",
                 "enablePullDownRefresh": false
             }
             

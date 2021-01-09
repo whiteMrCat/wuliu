@@ -16,8 +16,8 @@
   margin-left: 20rpx;
 }
 .prove .prove-item .prove-info {
-  width: 20vw;
-  text-align: center;
+  width: 40vw;
+  text-align: right;
   color: #999;
 }
 

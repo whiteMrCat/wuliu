@@ -17,7 +17,7 @@
 				<u-input v-model="form.load" placeholder="请输入车辆载重/吨" />
 			</u-form-item>
 			<u-form-item label="运费">
-				<u-input v-model="form.freight" placeholder="请输入车辆运费/元,不填写为面议"/>
+				<u-input v-model="form.freight" placeholder="请输入车辆运费/元,不填写为面议" />
 			</u-form-item>
 			<u-form-item label="车辆类型">
 				<u-input v-model="form.carType" disabled @click="showType = true" placeholder="请选择车辆类型" />
@@ -37,10 +37,10 @@
 			<u-form-item label="是否置顶">
 				<u-switch v-model="form.isTop" slot="right" style="margin-right: 30rpx;"></u-switch>
 			</u-form-item>
-			
+
 		</u-form>
 		<view style="padding: 30rpx;">
-			<u-button type="primary">{{form.isTop ? '发布并支付置顶费用：￥10' : '发布'}}</u-button>
+			<u-button type="primary" @click="submitForm">{{form.isTop ? '发布并创建置顶订单' : '发布'}}</u-button>
 		</view>
 		<!-- 地点选择 -->
 		<u-picker mode="region" v-model="showAddress" @confirm="getAddress"></u-picker>
@@ -148,6 +148,69 @@
 			this.$refs.uForm.setRules(this.rules);
 		},
 		methods: {
+			submitForm() {
+				let _this = this
+				this.$api.addInfoCar({
+					'start_address': this.form.startAddress.address,
+					'end_address': this.form.endAddress.address,
+					'contact': this.form.user,
+					'mobile': this.form.mobile,
+					'load': this.form.load,
+					'freight': this.form.freight,
+					'car_type': this.form.carType,
+					'route_type': this.form.wayType,
+					'start_time': this.form.timeStamp,
+					'info': this.form.info
+				}).then(res => {
+					// console.log(res)
+					if (res.code == 1) {
+						if (_this.form.isTop == true) {
+							uni.showToast({
+								title: '保存成功，正在创建支付订单',
+								icon: 'none',
+								duration: 2000
+							});
+							_this.$api.makeOrder({
+								pay_way: 0,
+								body: '车源信息置顶费用',
+								day_size: 7,
+								info_id: res.data.id,
+								info_type: '车源'
+							}).then(resd => {
+								if (resd.code == 1) {
+									uni.showToast({
+										title: '订单创建成功，正在跳转订单页面',
+										icon: 'none',
+										duration: 2000
+									});
+									uni.setStorageSync('order', resd.data)
+									uni.setStorageSync('infos', res.data)
+									setTimeout(function() {
+										uni.redirectTo({
+											url: '/pages/getOrder/getOrder'
+										})
+									}, 2000)
+								} else {
+									uni.showToast({
+										title: '订单创建失败，置顶失败',
+										icon: 'none',
+										duration: 2000
+									});
+								}
+							})
+						} else {
+							uni.showToast({
+								title: '保存成功',
+								duration: 2000
+							});
+							setTimeout(function() {
+								uni.navigateBack()
+							}, 2000)
+						}
+
+					}
+				})
+			},
 			getTime(e) {
 				// console.log(e)
 				this.form.time = e.year + '-' + e.month + '-' + e.day + ' ' + e.hour + ':' + e.minute

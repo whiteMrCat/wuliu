@@ -1,7 +1,7 @@
 <template>
 	<view class="logistics">
 		<u-tabs :list="tab_list" :is-scroll="false" :current="current" @change="change" bar-width="120"></u-tabs>
-		<view class="fliters" @click="showFliters=true">
+<!-- 		<view class="fliters" @click="showFliters=true">
 			<view class="fliters-item">
 				<text>职业分类</text>
 				<u-icon name="arrow-down"></u-icon>
@@ -18,26 +18,89 @@
 				<text>更多</text>
 				<u-icon name="arrow-down"></u-icon>
 			</view>
-		</view>
-
-		<view class="list">
-			<view class="list-item" v-for="(item, index) in 6" :key="index">
+		</view> -->
+		
+		<view class="list" v-if="current == 0">
+			<view class="list-item" v-for="(item, index) in inviteListTop" :key="index" @click="goUrlAndStorage('/pages/position/details', 'invite', item)">
 				<view class="list-item-main">
 					<view class="list-div do-flex">
-						<view class="list-top-item title">大车司机</view>
-						<view class="list-top-item" style="color: #fa3534;">3K-5K/月</view>
+						<view class="list-top-item title">{{item.name}}</view>
+						<view class="list-top-item" style="color: #fa3534;">{{item.start_salary}}-{{item.end_salary}}/月</view>
 					</view>
 					<view class="list-div">
-						<view class="list-top-item info">东营</view>
-						<view class="list-top-item info">不限</view>
-						<view class="list-top-item info">学历不限</view>
+						<view class="list-top-item info">{{item.address}}</view>
+						<view class="list-top-item info">{{item.number_year}}年</view>
+						<view class="list-top-item info">{{item.school}}</view>
 					</view>
 					<view class="list-div do-flex">
-						<view class="list-top-item" style="color: #c8c9cc;font-size: 9pt;">XXXX公司</view>
-						<view class="list-top-item">2020-10-25</view>
+						<view class="list-top-item" style="color: #c8c9cc;font-size: 9pt;">{{item.contact}}</view>
+						<!-- <view class="list-top-item">2020-10-25</view> -->
 					</view>
 				</view>
 				<image src="../../static/top.png" mode="widthFix" class="is-top"></image>
+			</view>
+		</view>
+
+		<view class="list" v-if="current == 0">
+			<view class="list-item" v-for="(item, index) in inviteList" :key="index" @click="goUrlAndStorage('/pages/position/details', 'invite', item)">
+				<view class="list-item-main">
+					<view class="list-div do-flex">
+						<view class="list-top-item title">{{item.name}}</view>
+						<view class="list-top-item" style="color: #fa3534;">{{item.start_salary}}-{{item.end_salary}}/月</view>
+					</view>
+					<view class="list-div">
+						<view class="list-top-item info">{{item.address}}</view>
+						<view class="list-top-item info">{{item.number_year}}年</view>
+						<view class="list-top-item info">{{item.school}}</view>
+					</view>
+					<view class="list-div do-flex">
+						<view class="list-top-item" style="color: #c8c9cc;font-size: 9pt;">{{item.contact}}</view>
+						<!-- <view class="list-top-item">2020-10-25</view> -->
+					</view>
+				</view>
+				<!-- <image src="../../static/top.png" mode="widthFix" class="is-top"></image> -->
+			</view>
+		</view>
+		
+		<view class="list" v-if="current == 1">
+			<view class="list-item" v-for="(item, index) in resumeListTop" :key="index" @click="goUrlAndStorage('/pages/position/resume', 'resume', item)">
+				<view class="list-item-main">
+					<view class="list-div do-flex">
+						<view class="list-top-item title">{{item.name}}</view>
+						<view class="list-top-item" style="color: #fa3534;">{{item.start_salary}}-{{item.end_salary}}/月</view>
+					</view>
+					<view class="list-div">
+						<view class="list-top-item info">{{item.address}}</view>
+						<view class="list-top-item info">{{item.number_year}}年</view>
+						<view class="list-top-item info">{{item.school}}</view>
+					</view>
+					<view class="list-div do-flex">
+						<view class="list-top-item" style="color: #c8c9cc;font-size: 9pt;">{{item.contact}}</view>
+						<!-- <view class="list-top-item">2020-10-25</view> -->
+					</view>
+				</view>
+				<image src="../../static/top.png" mode="widthFix" class="is-top"></image>
+			</view>
+		</view>
+		
+		<view class="list" v-if="current == 1">
+			<view class="list-item" v-for="(item, index) in resumeList" :key="index" @click="goUrlAndStorage('/pages/position/resume', 'resume', item)">
+				<view class="list-item-main">
+					<view class="list-div do-flex">
+						<view class="list-top-item title">{{item.name}}</view>
+						<view class="list-top-item" style="color: #fa3534;">{{item.start_salary}}-{{item.end_salary}}/月</view>
+					</view>
+					<view class="list-div">
+						<view class="list-top-item info">{{item.address}}</view>
+						<view class="list-top-item info">{{item.number_year}}年</view>
+						<view class="list-top-item info">{{item.school}}</view>
+					</view>
+					<view class="list-div do-flex">
+						<view class="list-top-item" style="color: #c8c9cc;font-size: 9pt;">{{item.contact}}</view>
+						<!-- <view class="list-top-item">2020-10-25</view> -->
+					</view>
+				</view>
+				<!-- <image src="../../static/top.png" mode="widthFix" class="is-top"></image> -->
 			</view>
 		</view>
 
@@ -48,22 +111,13 @@
 		<u-mask :show="showBtn" @click="showBtn = false">
 			<view class="warp">
 				<view class="rect" @tap.stop>
-					<view class="rect-btn">招聘信息</view>
-					<view class="rect-btn">求职信息</view>
+					<view class="rect-btn" @click="goUrl('/pages/release/invite')">招聘信息</view>
+					<view class="rect-btn" @click="goUrl('/pages/release/resume')">求职信息</view>
 				</view>
 			</view>
 		</u-mask>
 
-		<u-popup v-model="showFliters" mode="top" height="1200rpx">
-			<view class="fliters-main">
-				<view class="fliters-title">职业分类</view>
-				<view class="fliters-content">
-					<view class="fliters-items active">不锈钢罐体</view>
-					<view class="fliters-items">不锈钢罐体</view>
-					<view class="fliters-items">不锈钢罐体</view>
-					<view class="fliters-items">不锈钢罐体</view>
-				</view>
-			</view>
+		<!-- <u-popup v-model="showFliters" mode="top" height="1200rpx">
 			<view class="fliters-main">
 				<view class="fliters-title">薪资选择</view>
 				<view class="fliters-content">
@@ -91,7 +145,7 @@
 				<u-button @click="showFliters = false">取消</u-button>
 				<u-button @click="showFliters = false" type="primary">确定</u-button>
 			</view>
-		</u-popup>
+		</u-popup> -->
 		<u-picker mode="region" v-model="showAddress" @confirm="getAddress"></u-picker>
 	</view>
 </template>
@@ -114,19 +168,149 @@
 				showFliters: false,
 				startAddress: [],
 				endAddress: [],
-				index: 1
+				index: 1,
+				filters: [],
+				inviteList: [],
+				inviteListTop: [],
+				resumeList: [],
+				resumeListTop: [],
+				page: 1
 			};
 		},
 		onLoad() {
-
+		
+		},
+		onShow() {
+			this.getInfoInvite(1)
+		},
+		onReachBottom() {
+			let _this = this
+			uni.showLoading({
+				title: '加载中'
+			})
+			if (this.current == 0) {
+				// this.getTopInfoCar(this.page)
+				this.getInfoInvite(this.page)
+				
+			} else {
+				this.getInfoResume(this.page)
+				// this.getTopInfoGoods(1)
+				
+			}
+			setTimeout(function() {
+				uni.hideLoading();
+			}, 2000);
+		},
+		onPullDownRefresh() {
+			this.page = 1
+			if (this.current == 0) {
+				// this.getTopInfoCar(this.page)
+				this.getInfoInvite(1)
+				this.getTopInfoInvite(1)
+				
+			} else {
+				this.getInfoResume(1)
+				this.getTopInfoResume(1)
+				// this.getTopInfoGoods(1)
+				
+			}
+			setTimeout(function() {
+				uni.stopPullDownRefresh();
+			}, 2000);
 		},
 		methods: {
+			
+			goUrlAndStorage(url,name, info) {
+				uni.navigateTo({
+					url: url,
+					animationType: 'pop-in',
+					animationDuration: 200
+				})
+				uni.setStorageSync(name, info)
+			},
+			getTopInfoInvite(page) {
+				let _this = this
+				this.$api.getInfoInvite({
+					page: page, 
+					page_size: 10,
+					filters: {
+						is_top: 1,
+						status: 1
+					}
+				}).then(res => {
+					if (page == 1) {
+						_this.inviteListTop = res.data
+					} else {
+						for (let x in res.data) {
+							_this.inviteListTop.push(res.data[x])
+						}
+					}
+				})
+			},
+			getInfoInvite(page) {
+				let _this = this
+				this.$api.getInfoInvite({
+					page: page, 
+					page_size: 10,
+					filters: this.filters
+				}).then(res => {
+					if (page == 1) {
+						_this.inviteList = res.data
+					} else {
+						_this.page += 1
+						for (let x in res.data) {
+							_this.inviteList.push(res.data[x])
+						}
+					}
+				})
+			},
+			getTopInfoResume(page) {
+				let _this = this
+				this.$api.getInfoResume({
+					page: page, 
+					page_size: 10,
+					filters: {
+						is_top: 1,
+						status: 1
+					}
+				}).then(res => {
+					if (page == 1) {
+						_this.resumeListTop = res.data
+					} else {
+						for (let x in res.data) {
+							_this.resumeListTop.push(res.data[x])
+						}
+					}
+				})
+			},
+			getInfoResume(page) {
+				let _this = this
+				this.$api.getInfoResume({
+					page: page, 
+					page_size: 10,
+					filters: this.filters
+				}).then(res => {
+					if (page == 1) {
+						_this.resumeList = res.data
+					} else {
+						_this.page += 1
+						for (let x in res.data) {
+							_this.resumeList.push(res.data[x])
+						}
+					}
+				})
+			},
 			setMineAddress(index) {
 				this.index = index
 				this.showAddress = true
 			},
 			change(index) {
 				this.current = index;
+				if (index == 0) {
+					this.getInfoInvite(1)
+				} else{
+					this.getInfoResume(1)
+				}
 			},
 			getAddress(e) {
 				console.log(e)
@@ -135,6 +319,13 @@
 				} else {
 					this.endAddress = e
 				}
+			},
+			goUrl(url) {
+				uni.navigateTo({
+					url: url,
+					animationType: 'pop-in',
+					animationDuration: 200
+				})
 			}
 		}
 	}

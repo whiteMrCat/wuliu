@@ -5,6 +5,16 @@
 		},
 		onShow: function() {
 			console.log('App Show')
+			let user = uni.getStorageSync('user')
+			if (user) {
+				this.$api.getUserInfo({
+					id: user.id
+				}).then(res => {
+					if (res.code == 1) {
+						uni.setStorageSync('user', res.data)
+					}
+				})
+			}
 		},
 		onHide: function() {
 			console.log('App Hide')

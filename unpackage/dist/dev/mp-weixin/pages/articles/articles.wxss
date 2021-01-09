@@ -1,0 +1,58 @@
+.list {
+  margin-top: 10rpx;
+}
+.list .list-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+  background-color: #fff;
+  padding: 10rpx;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+}
+.list .list-item .list-left {
+  width: 20vw;
+}
+.list .list-item .list-left image {
+  width: 20vw;
+  height: 100rpx;
+}
+.list .list-item .list-right {
+  width: 80vw;
+  margin-left: 30rpx;
+}
+.list .list-item .list-right .list-title {
+  font-weight: bold;
+  font-size: 13pt;
+}
+.list .list-item .list-right .list-info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  margin: 20rpx 0;
+}
+.list .list-item .list-right .list-info .info-item {
+  padding: 10rpx 20rpx;
+  background-color: #efefef;
+  font-size: 8pt;
+  margin-right: 20rpx;
+  border-radius: 5rpx;
+}
+.list .list-item .list-right .list-info .bg-blue-light {
+  background-color: #a0cfff;
+  color: #fff;
+}
+.list .list-item .list-right .list-other {
+  color: #777;
+  font-size: 11pt;
+  font-weight: bold;
+  margin-top: 14rpx;
+}
+.list .list-item .is-top {
+  width: 10vw;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+

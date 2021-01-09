@@ -11,8 +11,28 @@
   border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef;
 }
+.list .list-item .xia {
+  position: absolute;
+  right: 30rpx;
+  top: 30%;
+  width: 100rpx;
+}
 .list .list-item .list-left {
   width: 80vw;
+  overflow: hidden;
+}
+.list .list-item .list-left .item-left {
+  float: left;
+  width: 30%;
+}
+.list .list-item .list-left .item-left image {
+  width: 100%;
+  height: 160rpx;
+}
+.list .list-item .list-left .item-right {
+  float: left;
+  width: 60%;
+  margin-left: 20rpx;
 }
 .list .list-item .list-left .list-title {
   font-weight: bold;
@@ -28,8 +48,7 @@
   background-color: #efefef;
   font-size: 8pt;
   margin-right: 20rpx;
-  -webkit-border-radius: 5rpx;
-          border-radius: 5rpx;
+  border-radius: 5rpx;
 }
 .list .list-item .list-left .list-info .bg-blue-light {
   background-color: #a0cfff;

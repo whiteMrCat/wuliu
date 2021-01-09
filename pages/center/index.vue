@@ -16,26 +16,26 @@
 				<u-icon name="setting" size="60" color="#fff"></u-icon>
 			</view>
 		</view>
-		<view class="user-nav" @click="goUrl('/pages/mine/mine')">
-			<view class="nav-item">
+		<view class="user-nav" >
+			<view class="nav-item" @click="goUrl('/pages/mine/mine?index=0')">
 				<image src="../../static/u1.png" mode="widthFix"></image>
 				<text>我的车源</text>
 			</view>
-			<view class="nav-item">
+			<view class="nav-item" @click="goUrl('/pages/mine/mine?index=1')">
 				<image src="../../static/u2.png" mode="widthFix"></image>
 				<text>我的货源</text>
 			</view>
-			<view class="nav-item">
+			<view class="nav-item" @click="goUrl('/pages/mine/mine?index=2')">
+				<image src="../../static/u5.png" mode="widthFix"></image>
+				<text>我的二手车</text>
+			</view>
+			<view class="nav-item" @click="goUrl('/pages/mine/mine?index=5')">
 				<image src="../../static/u3.png" mode="widthFix"></image>
 				<text>我的招聘</text>
 			</view>
-			<view class="nav-item">
+			<view class="nav-item" @click="goUrl('/pages/mine/mine?index=6')">
 				<image src="../../static/u4.png" mode="widthFix"></image>
 				<text>我的简历</text>
-			</view>
-			<view class="nav-item">
-				<image src="../../static/u5.png" mode="widthFix"></image>
-				<text>我的二手车</text>
 			</view>
 		</view>
 		<image src="../../static/vip.jpg" mode="widthFix" class="vip"></image>

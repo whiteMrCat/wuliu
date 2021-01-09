@@ -1,0 +1,47 @@
+.info-title {
+  font-size: 32rpx;
+  padding: 30rpx;
+  font-weight: bold;
+}
+.info-list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 30rpx;
+  font-size: 32rpx;
+  border-bottom: 1px solid #efefef;
+}
+.info-list .info-left {
+  width: 30vw;
+  text-align: left;
+}
+.info-list .info-right {
+  width: 70vw;
+  text-align: right;
+  font-weight: bold;
+}
+.info-list .text-red {
+  color: red;
+}
+.info-other {
+  padding: 30rpx;
+}
+.info-other .other-title {
+  font-weight: bold;
+}
+.info-other .other-main {
+  font-size: 32rpx;
+  margin-top: 20rpx;
+}
+.info-btn {
+  position: fixed;
+  bottom: 20rpx;
+  width: 90vw;
+  left: 5vw;
+  background-color: #2979FF;
+  text-align: center;
+  padding: 20rpx 0;
+  color: #fff;
+  border-radius: 10rpx;
+}
+

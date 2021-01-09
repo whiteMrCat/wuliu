@@ -3,15 +3,15 @@
 		<u-tabs :list="tab_list" :is-scroll="false" :current="current" @change="change" bar-width="120"></u-tabs>
 		<view class="fliters" @click="showFliters=true">
 			<view class="fliters-item">
-				<text>罐体分类</text>
+				<text>品牌分类</text>
 				<u-icon name="arrow-down"></u-icon>
 			</view>
 			<view class="fliters-item">
-				<text>介质分类</text>
+				<text>类型分类</text>
 				<u-icon name="arrow-down"></u-icon>
 			</view>
 			<view class="fliters-item">
-				<text>车型分类</text>
+				<text>所在地</text>
 				<u-icon name="arrow-down"></u-icon>
 			</view>
 			<view class="fliters-item">
@@ -21,23 +21,40 @@
 		</view>
 
 		<view class="list">
-			<view class="list-item" v-for="(item, index) in 6" :key="index">
+			<view class="list-item" v-for="(item, index) in listTop" :key="index" @click="goUrlAndStorage('/pages/trading/detail', 'used', item)">
 				<view class="list-left">
-					<image src="../../static/banner.jpg" mode=""></image>
+					<image :src="imgHost + '/upload/' + item.car_img[0]" mode=""></image>
 				</view>
 				<view class="list-right">
-					<view class="list-title">戴姆勒GTL瑞江白钢保温管</view>
+					<view class="list-title">{{item.brand}}-{{item.name}}</view>
 					<view class="list-info">
-						<view class="info-item bg-blue-light">12万公里</view>
+						<view class="info-item bg-blue-light">{{item.year}}年</view>
 					</view>
-					<view class="list-other">￥2.35万</view>
+					<view class="list-other">￥{{item.price}}万</view>
 				</view>
-				<image src="../../static/top.png" mode="widthFix" class="is-top"></image>
+				<image src="../../static/top.png" mode="widthFix" class="is-top" v-if="item.is_top == 1"></image>
+			</view>
+		</view>
+
+		<view class="list">
+			<view class="list-item" v-for="(item, index) in list" :key="index" @click="goUrlAndStorage('/pages/trading/detail', 'used', item)">
+				<view class="list-left">
+					<image :src="imgHost+ '/upload/' + item.car_img[0]" mode=""></image>
+				</view>
+				<view class="list-right">
+					<view class="list-title">{{item.brand}}-{{item.name}}</view>
+					<view class="list-info">
+						<view class="info-item bg-blue-light">{{item.year}}年</view>
+					</view>
+					<view class="list-other">￥{{item.price}}万</view>
+				</view>
+				<!-- <image src="../../static/top.png" mode="widthFix" class="is-top" v-if="item.is_top == 1"></image> -->
 			</view>
 		</view>
 
 		<view class="fabu">
-			<u-button type="primary" :ripple="true" shape="square" class="fabu-btn" @click="showBtn = true"><u-icon name="plus"></u-icon></u-button>
+			<!-- <u-button type="primary" :ripple="true" shape="square" class="fabu-btn" @click="showBtn = true"><u-icon name="plus"></u-icon></u-button> -->
+			<u-button type="primary" :ripple="true" shape="square" class="fabu-btn" @click="goUrl('/pages/release/used')"><u-icon name="plus"></u-icon></u-button>
 		</view>
 		
 		<u-mask :show="showBtn" @click="showBtn = false">
@@ -50,42 +67,28 @@
 			</view>
 		</u-mask>
 
-		<u-popup v-model="showFliters" mode="top" height="1200rpx">
+		<u-popup v-model="showFliters" mode="top" height="800rpx">
 			<view class="fliters-main">
-				<view class="fliters-title">罐体分类</view>
+				<view class="fliters-title">品牌分类</view>
 				<view class="fliters-content">
-					<view class="fliters-items active">不锈钢罐体</view>
-					<view class="fliters-items">不锈钢罐体</view>
-					<view class="fliters-items">不锈钢罐体</view>
-					<view class="fliters-items">不锈钢罐体</view>
+					<view class="fliters-items" :class="[brand_index == index ? 'active': '']" v-for="(item, index) in set.brand" :key="index" @click="setbrand(index, item.name)">{{item.name}}</view>
 				</view>
 			</view>
 			<view class="fliters-main">
-				<view class="fliters-title">介质分类</view>
+				<view class="fliters-title">车辆类型</view>
 				<view class="fliters-content">
-					<view class="fliters-items active">回程车</view>
-					<view class="fliters-items">专程车</view>
+					<view class="fliters-items" :class="[carType_index == index ? 'active': '']" v-for="(item, index) in set.car_type" :key="index" @click="setCarType(index, item.name)">{{item.name}}</view>
 				</view>
 			</view>
 			<view class="fliters-main">
-				<view class="fliters-title">车型分类</view>
+				<view class="fliters-title">所在地</view>
 				<view class="fliters-content">
-					<view class="fliters-items active">￥0-￥1000</view>
-					<view class="fliters-items">￥1000-￥2000</view>
-					<view class="fliters-items">￥2000+</view>
-				</view>
-			</view>
-			<view class="fliters-main">
-				<view class="fliters-title">价格区间</view>
-				<view class="fliters-content">
-					<view class="fliters-items active">￥0-￥1000</view>
-					<view class="fliters-items">￥1000-￥2000</view>
-					<view class="fliters-items">￥2000+</view>
+					<view class="address-list" @click="setMineAddress(1)">{{address.length == 0 ? '选择所在地' : address.province.label + '-' + address.city.label + '-' + address.area.label}}</view>
 				</view>
 			</view>
 			<view class="fliters-btn">
-				<u-button @click="showFliters = false">取消</u-button>
-				<u-button @click="showFliters = false" type="primary">确定</u-button>
+				<u-button @click="reset">重置</u-button>
+				<u-button @click="setFliters" type="primary">确定</u-button>
 			</view>
 		</u-popup>
 		<u-picker mode="region" v-model="showAddress" @confirm="getAddress"></u-picker>
@@ -99,8 +102,12 @@
 		},
 		data() {
 			return {
+				set: [],
+				brand_index: -1,
+				carType_index: -1,
 				showBtn: false,
 				showAddress: false,
+				imgHost: this.$url,
 				tab_list: [{
 					name: '二手车'
 				}, {
@@ -112,15 +119,138 @@
 				}],
 				current: 0,
 				showFliters: false,
-				startAddress: [],
-				endAddress: [],
-				index: 1
+				address: [],
+				index: 1,
+				list: [],
+				filters: {
+					status: 1,
+					car_type: '',
+					media_type: '',
+					brand: '',
+					models: '',
+					type: 0,
+					address: ''
+				},
+				listTop: [],
+				page: 1
 			};
 		},
 		onLoad() {
-
+			this.set = uni.getStorageSync('set')
+		},
+		onShow() {
+			this.getListTop(1)
+			this.getList(1)
+		},
+		onReachBottom() {
+			let _this = this
+			uni.showLoading({
+				title: '加载中'
+			})
+			this.getList(this.page)
+			setTimeout(function() {
+				uni.hideLoading();
+			}, 2000);
+		},
+		onPullDownRefresh() {
+			this.page = 1
+			this.getList(1)
+			this.getListTop(1)
+			setTimeout(function() {
+				uni.stopPullDownRefresh();
+			}, 2000);
 		},
 		methods: {
+			goUrlAndStorage(url, name, info) {
+				uni.navigateTo({
+					url: url,
+					animationType: 'pop-in',
+					animationDuration: 200
+				})
+				uni.setStorageSync(name, info)
+			},
+			reset() {
+				this.showFliters = false
+				this.brand_index = -1
+				this.carType_index = -1
+				this.filters = {
+					status: 1,
+					car_type: '',
+					media_type: '',
+					brand: '',
+					models: '',
+					type: 0,
+					address: ''
+				}
+				this.getList(1)
+			},
+			setFliters() {
+				this.showFliters = false
+				this.getList(1)
+			},
+			setMineAddress() {
+				this.showAddress = true
+			},
+			setbrand(index, val) {
+				this.filters.brand = val
+				this.brand_index = index
+			},
+			setCarType(index, val) {
+				this.filters.car_type = val
+				this.carType_index = index
+			},
+			getListTop(page) {
+				let _this = this
+				this.$api.getInfoUsed({
+					page: page,
+					page_size: 10,
+					filters: {
+						'is_top': 1,
+						'type': this.current
+					}
+				}).then(res => {
+					let lists = res.data
+					for(let key in lists) {
+						// lists[key]['car_img'].replace(/\\/g,'/')
+						for(let _key in lists[key]['car_img']) {
+							lists[key]['car_img'][_key] = lists[key]['car_img'][_key].replace(/\\/g,"/")
+							// console.log(lists[key]['car_img'][_key])
+						}
+					}
+					if (page == 1) {
+						_this.listTop = lists
+					} else {
+						for (let x in lists) {
+							_this.listTop.push(lists[x])
+						}
+					}
+				})
+			},
+			getList(page) {
+				let _this = this
+				this.$api.getInfoUsed({
+					page: page,
+					page_size: 10,
+					filters: this.filters
+				}).then(res => {
+					let lists = res.data
+					for(let key in lists) {
+						// lists[key]['car_img'].replace(/\\/g,'/')
+						for(let _key in lists[key]['car_img']) {
+							lists[key]['car_img'][_key] = lists[key]['car_img'][_key].replace(/\\/g,"/")
+							// console.log(lists[key]['car_img'][_key])
+						}
+					}
+					if (page == 1) {
+						_this.list = lists
+					} else {
+						for (let x in lists) {
+							_this.list.push(lists[x])
+						}
+						_this.page += 1
+					}
+				})
+			},
 			goUrl(url) {
 				uni.navigateTo({
 					url: url,
@@ -134,20 +264,29 @@
 			},
 			change(index) {
 				this.current = index;
+				this.filters.type = index
+				this.getList(1)
 			},
 			getAddress(e) {
-				console.log(e)
-				if (this.index == 1) {
-					this.startAddress = e
-				} else {
-					this.endAddress = e
-				}
+				this.address = e
+				this.filters.address =  e.province.label + '-' + e.city.label + '-' + e.area.label
 			}
 		}
 	}
 </script>
 
 <style lang="less">
+	.address-list {
+		padding: 10rpx 0rpx;
+		border: 1px solid #dddddd;
+		border-radius: 10rpx;
+		width: 40vw;
+		text-align: center;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		word-break: break-all;
+	}
 	page {
 		background-color: #efefef;
 	}

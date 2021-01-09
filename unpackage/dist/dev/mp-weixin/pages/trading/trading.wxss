@@ -1,3 +1,14 @@
+.address-list {
+  padding: 10rpx 0rpx;
+  border: 1px solid #dddddd;
+  border-radius: 10rpx;
+  width: 40vw;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+}
 page {
   background-color: #efefef;
 }
@@ -9,8 +20,7 @@ page {
 .warp .rect .rect-btn {
   width: 140rpx;
   height: 140rpx;
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
   background-color: #2979ff;
   color: #fff;
   line-height: 140rpx;
@@ -25,8 +35,7 @@ page {
 .logistics .fabu button {
   width: 140rpx;
   height: 140rpx;
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
 }
 .logistics .list {
   margin-top: 10rpx;
@@ -66,8 +75,7 @@ page {
   background-color: #efefef;
   font-size: 8pt;
   margin-right: 20rpx;
-  -webkit-border-radius: 5rpx;
-          border-radius: 5rpx;
+  border-radius: 5rpx;
 }
 .logistics .list .list-item .list-right .list-info .bg-blue-light {
   background-color: #a0cfff;
@@ -113,8 +121,7 @@ page {
 .logistics .fliters-main .fliters-content .fliters-items {
   padding: 10rpx 30rpx;
   border: 1px solid #dddddd;
-  -webkit-border-radius: 10rpx;
-          border-radius: 10rpx;
+  border-radius: 10rpx;
   margin: 20rpx 10rpx;
 }
 .logistics .fliters-main .fliters-content .fliters-address {
@@ -132,8 +139,7 @@ page {
 .logistics .fliters-main .fliters-content .fliters-address .address-list {
   padding: 10rpx 0rpx;
   border: 1px solid #dddddd;
-  -webkit-border-radius: 10rpx;
-          border-radius: 10rpx;
+  border-radius: 10rpx;
   width: 40vw;
   text-align: center;
   white-space: nowrap;

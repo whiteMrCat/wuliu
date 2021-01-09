@@ -1,0 +1,17 @@
+.order-list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  width: 100vw;
+  padding: 30rpx;
+}
+.order-list .order-left {
+  font-weight: bold;
+}
+.order-list .order-right {
+  color: #777;
+}
+

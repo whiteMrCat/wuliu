@@ -92,12 +92,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components = {
-  uSwiper: function() {
-    return __webpack_require__.e(/*! import() | uview-ui/components/u-swiper/u-swiper */ "uview-ui/components/u-swiper/u-swiper").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-swiper/u-swiper.vue */ 274))
-  },
-  uTabs: function() {
-    return Promise.all(/*! import() | uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-tabs/u-tabs.vue */ 281))
+var components
+try {
+  components = {
+    uSwiper: function() {
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-swiper/u-swiper */ "uview-ui/components/u-swiper/u-swiper").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-swiper/u-swiper.vue */ 343))
+    },
+    uTabs: function() {
+      return Promise.all(/*! import() | uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-tabs/u-tabs.vue */ 350))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
   }
 }
 var render = function() {
@@ -137,7 +156,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _data$onLoad$onShow$o;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} //
 //
 //
 //
@@ -169,8 +188,81 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-var _default =
-{
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = (_data$onLoad$onShow$o = {
+
   data: function data() {
     return {
       nav: [{
@@ -230,23 +322,190 @@ var _default =
         name: '求职信息' }],
 
       current: 0,
-      list: [] };
+      list: [],
+      carTopList: [],
+      goodsTopList: [],
+      listTop: [],
+      inviteListTop: [],
+      resumeListTop: [],
+      type: 0 };
 
   },
   onLoad: function onLoad() {
     this.getSet();
+    this.getTopInfoCar(1);
   },
-  methods: {
-    getSet: function getSet() {
-      var _this = this;
-      this.$api.getSet().then(function (res) {
-        // console.log(res)
-        _this.list = res.data.banner;
-      });
-    },
-    change: function change(index) {
-      this.current = index;
-    } } };exports.default = _default;
+  onShow: function onShow() {
+    console.log(11111);
+  },
+  onPullDownRefresh: function onPullDownRefresh() {
+    this.page = 1;
+    this.change(this.current);
+    setTimeout(function () {
+      uni.stopPullDownRefresh();
+    }, 2000);
+  } }, _defineProperty(_data$onLoad$onShow$o, "onShow", function onShow()
+{}), _defineProperty(_data$onLoad$onShow$o, "methods",
+{
+  goUrl: function goUrl(url) {
+    uni.navigateTo({
+      url: url,
+      animationType: 'pop-in',
+      animationDuration: 200 });
+
+  },
+  goUrlAndStorage: function goUrlAndStorage(url, name, info) {
+    uni.navigateTo({
+      url: url,
+      animationType: 'pop-in',
+      animationDuration: 200 });
+
+    uni.setStorageSync(name, info);
+  },
+  getTopInfoResume: function getTopInfoResume(page) {
+    var _this = this;
+    this.$api.getInfoResume({
+      page: page,
+      page_size: 10,
+      filters: {
+        is_top: 1,
+        status: 1 } }).
+
+    then(function (res) {
+      if (page == 1) {
+        _this.resumeListTop = res.data;
+      } else {
+        for (var x in res.data) {
+          _this.resumeListTop.push(res.data[x]);
+        }
+      }
+    });
+  },
+  getTopInfoInvite: function getTopInfoInvite(page) {
+    var _this = this;
+    this.$api.getInfoInvite({
+      page: page,
+      page_size: 10,
+      filters: {
+        is_top: 1,
+        status: 1 } }).
+
+    then(function (res) {
+      if (page == 1) {
+        _this.inviteListTop = res.data;
+      } else {
+        for (var x in res.data) {
+          _this.inviteListTop.push(res.data[x]);
+        }
+      }
+    });
+  },
+  getListTop: function getListTop(page) {
+    var _this = this;
+    this.$api.getInfoUsed({
+      page: page,
+      page_size: 10,
+      filters: {
+        'is_top': 1,
+        'type': this.type } }).
+
+    then(function (res) {
+      var lists = res.data;
+      for (var key in lists) {
+        // lists[key]['car_img'].replace(/\\/g,'/')
+        for (var _key in lists[key]['car_img']) {
+          lists[key]['car_img'][_key] = lists[key]['car_img'][_key].replace(/\\/g, "/");
+          // console.log(lists[key]['car_img'][_key])
+        }
+      }
+      if (page == 1) {
+        _this.listTop = lists;
+      } else {
+        for (var x in lists) {
+          _this.listTop.push(lists[x]);
+        }
+      }
+    });
+  },
+  getTopInfoCar: function getTopInfoCar(page) {
+    var _this = this;
+    this.$api.getInfoCar({
+      page: page,
+      page_size: 10,
+      filters: {
+        'is_top': 1 } }).
+
+    then(function (res) {
+      // console.log(res)
+      if (page == 1) {
+        _this.carTopList = res.data;
+      } else {
+        for (var x in res.data) {
+          _this.carTopList.push(res.data[x]);
+        }
+      }
+    });
+  },
+  getTopInfoGoods: function getTopInfoGoods(page) {
+    var _this = this;
+    this.$api.getInfoGoods({
+      page: page,
+      page_size: 10,
+      filters: {
+        'is_top': 1 } }).
+
+    then(function (res) {
+      console.log('top', res);
+      if (page == 1) {
+        _this.goodsTopList = res.data;
+      } else {
+        for (var x in res.data) {
+          _this.goodsTopList.push(res.data[x]);
+        }
+      }
+    });
+  },
+  getSet: function getSet() {
+    var _this = this;
+    this.$api.getSet().then(function (res) {
+      // console.log(res)
+      _this.list = res.data.banner;
+      uni.setStorageSync('set', res.data);
+    });
+  },
+  change: function change(index) {
+    this.current = index;
+    switch (index) {
+      case 0:
+        this.getTopInfoCar(1);
+        break;
+      case 1:
+        this.getTopInfoGoods(1);
+        break;
+      case 2:
+        this.type = 0;
+        this.getListTop(1);
+
+        break;
+      case 3:
+        this.type = 1;
+        this.getListTop(1);
+
+        break;
+      case 4:
+        this.type = 2;
+        this.getListTop(1);
+
+        break;
+      case 5:
+        this.getTopInfoInvite(1);
+        break;
+      case 6:
+        this.getTopInfoResume(1);
+        break;}
+
+  } }), _data$onLoad$onShow$o);exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

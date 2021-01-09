@@ -59,8 +59,7 @@ page.data-v-57280228 {
   background-color: #efefef;
   font-size: 8pt;
   margin-right: 20rpx;
-  -webkit-border-radius: 5rpx;
-          border-radius: 5rpx;
+  border-radius: 5rpx;
 }
 .index .list .list-item .list-left .list-info .bg-blue-light.data-v-57280228 {
   background-color: #a0cfff;

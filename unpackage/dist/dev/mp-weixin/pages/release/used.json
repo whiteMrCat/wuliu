@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "二手车发布",
+  "navigationBarTitleText": "车辆发布",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "u-form": "/uview-ui/components/u-form/u-form",

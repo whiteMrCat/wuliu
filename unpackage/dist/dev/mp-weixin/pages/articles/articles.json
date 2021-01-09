@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "商会文章",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-tabs": "/uview-ui/components/u-tabs/u-tabs"
+  }
+}
